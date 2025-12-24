@@ -86,6 +86,10 @@ window.clearData = () => {
 }
 
 window.downloadReport = () => {
+    if (!fullText) {
+        alert("Norhing to export.");
+        return;
+    }
     const blob = new Blob([fullText], { type: 'text/markdown' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
