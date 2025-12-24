@@ -35,6 +35,17 @@
                 </div>
             </div>
 
+            <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <input type="checkbox" id="poster-toggle" class="w-4 h-4 text-blue-600 border-gray-300 rounded">
+                    <label for="poster-toggle" class="text-sm font-medium text-gray-700">Generate Movie Poster Prompts</label>
+                </div>
+                <label class="cursor-pointer bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs py-2 px-4 rounded border border-slate-300 transition">
+                    📁 Upload .txt or .md
+                    <input type="file" id="file-selector" accept=".txt,.md" class="hidden">
+                </label>
+            </div>
+
             <div>
                 <label class="block text-sm font-medium text-gray-700">Journal Entries (your API key and data stay in the browser and are never sent to a server as all logic is Client-Side only)</label>
                 <textarea id="journal-input" rows="10" placeholder="Paste your journal entries here..." class="mt-1 block w-full border border-gray-300 rounded-md p-2 text-sm font-mono shadow-sm"></textarea>
@@ -42,6 +53,10 @@
 
             <button onclick="runForecast()" id="btn-run" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-md transition duration-200">
                 Generate Future Timelines
+            </button>
+            
+            <button onclick="downloadReport()" id="btn-download" class="w-full border-2 border-blue-600 text-blue-600 hover:bg-blue-50 font-bold py-2 rounded-md transition duration-200">
+                💾 Download Timeline (.md)
             </button>
 
             <hr class="my-8">
