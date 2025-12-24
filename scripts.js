@@ -46,21 +46,21 @@ window.runForecast = async () => {
         const model = genAI.getGenerativeModel({ model: modelName });
         const systemPrompt =
         `You are a Behavioral Analyst and Narrative Forecaster. I will provide a series of journal entries.
-    Your Task:
-    1. Analyze the text for: 'Engines' (habits/thoughts that drive progress) and 'Anchors' (recurring self-sabotage or anxieties).
-    2. Project a Gold Timeline: A 12-month 'Best Case' movie where the user leverages their Engines.
-    3. Project a Shadow Timeline: A 12-month 'Cautionary Tale' where the user succumbs to their Anchors.
-    Requirements:
-    1. Provide exactly 6 Plot Points for each timeline.
-    2. Each point must include: a Title, a Month (e.g., Month 3), a brief narrative description, and a Happiness Score (1−10).
-    3. Output in clean Markdown format.${posterInstruction}
-    Journal data: \n\n ${content}`;
+        Your Task:
+        1. Analyze the text for: 'Engines' (habits/thoughts that drive progress) and 'Anchors' (recurring self-sabotage or anxieties).
+        2. Project a Gold Timeline: A 12-month 'Best Case' movie where the user leverages their Engines.
+        3. Project a Shadow Timeline: A 12-month 'Cautionary Tale' where the user succumbs to their Anchors.
+        Requirements:
+        1. Provide exactly 6 Plot Points for each timeline.
+        2. Each point must include: a Title, a Month (e.g., Month 3), a brief narrative description, and a Happiness Score (1−10).
+        3. Output in clean Markdown format.${posterInstruction}
+        Journal data: \n\n ${content}`.split('\n').map(line => line.trim()).join('\n');
         console.log(systemPrompt)
     
         const result = await model.generateContentStream(systemPrompt);
         
         outputDiv.innerHTML = ""; // Clear "Thinking"
-        document.getElementById('copy-btn').style.display = "block";
+        document.getElementById('btn-copy').style.display = "block";
         for await (const chunk of result.stream) {
             const chunkText = chunk.text();
             fullText += chunkText;
