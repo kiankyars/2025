@@ -2,7 +2,6 @@ import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
 
 // Load saved key/model from localStorage
 document.getElementById('api-key').value = localStorage.getItem('gemini_key') || 'AIzaSyBcgd0pGo84nr4UEPL7eFMr_2xunnp1pkQ';
-document.getElementById('model-name').value = localStorage.getItem('gemini_model');
 // File Reader Logic
 document.getElementById('file-selector').addEventListener('change', function(e) {
     const file = e.target.files[0];
@@ -27,7 +26,7 @@ window.runForecast = async () => {
     const posterInstruction = includePosters 
         ? "\n4. Provide two detailed image generation prompts (one for each timeline) that visually represent the user's future self." : "";
 
-    if (!content) {
+    if (!content || !) {
         alert("Please provide journal entries.");
         return;
     }
@@ -54,6 +53,7 @@ window.runForecast = async () => {
         2. Each point must include: a Title, a Month (e.g., Month 3), a brief narrative description, and a Happiness Score (1−10).
         3. Output in clean Markdown format.${posterInstruction}
         Journal data: \n\n ${content}`;
+        console.log(systemPrompt)
     
         const result = await model.generateContentStream(systemPrompt);
         
