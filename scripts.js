@@ -45,7 +45,8 @@ window.runForecast = async () => {
         const genAI = new GoogleGenerativeAI(key);
         const model = genAI.getGenerativeModel({ model: modelName });
 
-        const systemPrompt = `You are a Behavioral Analyst and Narrative Forecaster. I will provide a series of journal entries.
+        const systemPrompt =
+        `You are a Behavioral Analyst and Narrative Forecaster. I will provide a series of journal entries.
         Your Task:
         1. Analyze the text for: 'Engines' (habits/thoughts that drive progress) and 'Anchors' (recurring self-sabotage or anxieties).
         2. Project a Gold Timeline: A 12-month 'Best Case' movie where the user leverages their Engines.
