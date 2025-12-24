@@ -2,17 +2,33 @@ import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
 
 // Load saved key/model from localStorage
 document.getElementById('api-key').value = localStorage.getItem('gemini_key') || '';
-document.getElementById('model-name').value = localStorage.getItem('gemini_model') || 'gemini-1.5-pro';
+document.getElementById('model-name').value = localStorage.getItem('gemini_model') || 'gemini-3-flash-preview';
+// File Reader Logic
+document.getElementById('file-selector').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        document.getElementById('journal-input').value = e.target.result;
+    };
+    reader.readAsText(file);
+});
 
 window.runForecast = async () => {
-    const key = document.getElementById('api-key').value;
-    const modelName = document.getElementById('model-name').value;
-    const content = document.getElementById('journal-input').value;
-    const btn = document.getElementById('btn-run');
-    const outputDiv = document.getElementById('output');
+    
+    window.runForecast = async () => {
+        const key = document.getElementById('api-key').value;
+        const modelName = document.getElementById('model-name').value;
+        const content = document.getElementById('journal-input').value;
+        const btn = document.getElementById('btn-run');
+        const outputDiv = document.getElementById('output');
+        const includePosters = document.getElementById('poster-toggle').checked;
+        
+        const posterInstruction = includePosters 
+            ? "\n4. Provide two detailed image generation prompts (one for each timeline) that visually represent the user's future self." : "";
 
-    if (!key || !content) {
-        alert("Please provide both an API key and journal entries.");
+    if (!content) {
+        alert("Please provide journal entries.");
         return;
     }
 
@@ -28,8 +44,17 @@ window.runForecast = async () => {
         const genAI = new GoogleGenerativeAI(key);
         const model = genAI.getGenerativeModel({ model: modelName });
 
-        const systemPrompt = `You are a Behavioral Analyst. Analyze the following journal entries for patterns. Plot a 'Gold Timeline' (best case) and a 'Shadow Timeline' (worst case) for the next 12 months with 6 plot points each. Include Happiness scores (1-10) and a 'Movie Poster' prompt at the end. Output in Markdown. Journal data: \n\n ${content}`;
-
+        const systemPrompt = `You are a Behavioral Analyst and Narrative Forecaster. I will provide a series of journal entries.
+        Your Task:
+        1. Analyze the text for: 'Engines' (habits/thoughts that drive progress) and 'Anchors' (recurring self-sabotage or anxieties).
+        2. Project a Gold Timeline: A 12-month 'Best Case' movie where the user leverages their Engines.
+        3. Project a Shadow Timeline: A 12-month 'Cautionary Tale' where the user succumbs to their Anchors.
+        Requirements:
+        1. Provide exactly 6 Plot Points for each timeline.
+        2. Each point must include: a Title, a Month (e.g., Month 3), a brief narrative description, and a Happiness Score (1−10).
+        3. Output in clean Markdown format.${posterInstruction}
+        Journal data: \n\n ${content}`;
+    
         const result = await model.generateContentStream(systemPrompt);
         
         let fullText = "";
