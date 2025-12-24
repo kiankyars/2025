@@ -2,7 +2,7 @@ import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
 
 // Load saved key/model from localStorage
 document.getElementById('api-key').value = localStorage.getItem('gemini_key') || 'AIzaSyBcgd0pGo84nr4UEPL7eFMr_2xunnp1pkQ';
-document.getElementById('model-name').value = localStorage.getItem('gemini_model') || 'gemini-3-flash-preview';
+document.getElementById('model-name').value = localStorage.getItem('gemini_model');
 // File Reader Logic
 document.getElementById('file-selector').addEventListener('change', function(e) {
     const file = e.target.files[0];
@@ -13,17 +13,19 @@ document.getElementById('file-selector').addEventListener('change', function(e) 
     };
     reader.readAsText(file);
 });
+let fullText = "";
     
 window.runForecast = async () => {
-        const key = document.getElementById('api-key').value;
-        const modelName = document.getElementById('model-name').value;
-        const content = document.getElementById('journal-input').value;
-        const btn = document.getElementById('btn-run');
-        const outputDiv = document.getElementById('output');
-        const includePosters = document.getElementById('poster-toggle').checked;
-        
-        const posterInstruction = includePosters 
-            ? "\n4. Provide two detailed image generation prompts (one for each timeline) that visually represent the user's future self." : "";
+    fullText = "";
+    const key = document.getElementById('api-key').value;
+    const modelName = document.getElementById('model-name').value;
+    const content = document.getElementById('journal-input').value;
+    const btn = document.getElementById('btn-run');
+    const outputDiv = document.getElementById('output');
+    const includePosters = document.getElementById('poster-toggle').checked;
+    
+    const posterInstruction = includePosters 
+        ? "\n4. Provide two detailed image generation prompts (one for each timeline) that visually represent the user's future self." : "";
 
     if (!content) {
         alert("Please provide journal entries.");
@@ -55,7 +57,6 @@ window.runForecast = async () => {
     
         const result = await model.generateContentStream(systemPrompt);
         
-        let fullText = "";
         outputDiv.innerHTML = ""; // Clear "Thinking"
 
         for await (const chunk of result.stream) {
@@ -81,3 +82,11 @@ window.clearData = () => {
         document.getElementById('output').innerHTML = "Data cleared.";
     }
 }
+
+window.downloadReport = () => {
+    const blob = new Blob([fullText], { type: 'text/markdown' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'timeline.md';
+    a.click();
+};
