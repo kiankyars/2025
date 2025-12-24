@@ -55,7 +55,6 @@ window.runForecast = async () => {
         2. Each point must include: a Title, a Month (e.g., Month 3), a brief narrative description, and a Happiness Score (1−10).
         3. Output in clean Markdown format.${posterInstruction}
         Journal data: \n\n ${content}`.split('\n').map(line => line.trim()).join('\n');
-        console.log(systemPrompt)
     
         const result = await model.generateContentStream(systemPrompt);
         
@@ -98,5 +97,12 @@ window.downloadReport = () => {
 };
 
 window.copyReport = () => {
-    navigator.clipboard.writeText(fullText)
+    const btn = document.getElementById('btn-copy');
+    navigator.clipboard.writeText(fullText).then(() => {
+        const originalText = btn.innerText;
+        btn.innerText = "Copied!";
+        setTimeout(() => {
+            btn.innerText = originalText;
+        }, 2000);
+    })
 };
