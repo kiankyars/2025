@@ -30,7 +30,7 @@
 
         <div class="toggle-group toggle-row">
             <input type="checkbox" id="poster-toggle" style="width: auto;">
-            <label for="poster-toggle">Ask model to additionally output two detailed image generation prompts (one for each timeline)</label>
+            <label for="poster-toggle">Also output two detailed image generation prompts for each timeline.</label>
         </div>
 
         <label class="file-btn file-zone">
@@ -40,7 +40,7 @@
 
         <div>
             <label style="font-size: 0.8rem; color: var(--text-dim);">Journal Entries</label>
-            <textarea id="journal-input" rows="10" placeholder="Paste your journal entries here..."></textarea>
+            <textarea id="journal-input" rows="10" placeholder="Your journal entries here..."></textarea>
         </div>
 
         <button onclick="runForecast()" id="btn-run">Generate Future Timelines</button>
@@ -52,8 +52,8 @@
         <div id="output" class="markdown-content">
             <p style="text-align: center; color: #666; margin-top: 40px;">// Results will appear here...</p>
         </div>
-        <footer>Your API key and data stay in the browser and are never sent to a server as all logic is Client-Side only, find the open-source code [here](https://github.com/kiankyars/2025)</footer>
     </div>
+    <footer>Your API key and data stay in the browser and are never sent to a server as all llm calls are client-side only, find the open-source code <a href="https://kiankyars.github.io/2025/">here</a>.</footer>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script type="module" src="scripts.js"></script>
 </body>
