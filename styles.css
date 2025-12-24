@@ -48,7 +48,6 @@ label {
     display: block;
     font-size: 0.75rem;
     font-weight: 600;
-    text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--text-dim);
     margin-bottom: 0.5rem;

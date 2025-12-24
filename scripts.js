@@ -26,7 +26,7 @@ window.runForecast = async () => {
     const posterInstruction = includePosters 
         ? "\n4. Provide two detailed image generation prompts (one for each timeline) that visually represent the user's future self." : "";
 
-    if (!content || !) {
+    if (!content) {
         alert("Please provide journal entries.");
         return;
     }

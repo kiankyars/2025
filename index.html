@@ -10,10 +10,10 @@
     <div class="container">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
             <h1>Life-Timeline Forecaster</h1>
-            <button onclick="clearData()" style="width: auto; padding: 5px 10px; font-size: 10px; margin: 0;">Clear All Data</button>
+            <button onclick="clearData()" style="width: auto; padding: 5px 10px; font-size: 10px; margin: 0; background: #331111; color: #ff5555;">Clear All Data</button>
         </div>
 
-        <div class="controls">
+        <div class="controls grid-row">
             <div>
                 <label>Gemini API Key</label>
                 <input type="password" id="api-key" placeholder="API key already provided, but if it's rate-limited, paste your key here...">
@@ -28,24 +28,24 @@
             </div>
         </div>
 
-        <div class="toggle-group">
+        <div class="toggle-group toggle-row">
             <input type="checkbox" id="poster-toggle" style="width: auto;">
             <label for="poster-toggle">Ask model to also output two detailed image generation prompts (one for each timeline)</label>
         </div>
 
-        <label class="file-btn">
+        <label class="file-btn file-zone">
             📁 [ UPLOAD .TXT OR .MD JOURNAL ]
             <input type="file" id="file-selector" accept=".txt,.md" style="display:none">
         </label>
 
         <div>
-            <label style="font-size: 0.8rem; color: var(--neon-blue);">Journal Entries (your API key and data stay in the browser and are never sent to a server as all logic is Client-Side only)</label>
+            <label style="font-size: 0.8rem; color: var(--text-dim);">Journal Entries (your API key and data stay in the browser and are never sent to a server as all logic is Client-Side only)</label>
             <textarea id="journal-input" rows="10" placeholder="Paste your journal entries here..."></textarea>
         </div>
 
         <button onclick="runForecast()" id="btn-run">Generate Future Timelines</button>
         
-        <button onclick="downloadReport()" id="btn-download" style="background: transparent; border: 1px solid var(--neon-blue); color: var(--neon-blue); margin-top: 10px;">
+        <button onclick="downloadReport()" id="btn-download" style="background: transparent; border: 1px solid var(--border); color: var(--text-main); margin-top: 10px;">
             💾 Download Timeline (.md)
         </button>
 
