@@ -2,6 +2,7 @@ import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
 
 // Load saved key/model from localStorage
 document.getElementById('api-key').value = localStorage.getItem('gemini_key') || '';
+document.getElementById('model-name').value = localStorage.getItem('gemini_model');
 // File Reader Logic
 document.getElementById('file-selector').addEventListener('change', function(e) {
     for (let index = 0; index < e.target.files.length; index++) {
@@ -9,7 +10,7 @@ document.getElementById('file-selector').addEventListener('change', function(e) 
         if (!file) continue;
         const reader = new FileReader();
         reader.onload = function(e) {
-            document.getElementById('journal-input').value += e.target.result;
+            document.getElementById('journal-input').value += "\n" + e.target.result;
         };
         reader.readAsText(file);
     }
