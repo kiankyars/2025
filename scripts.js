@@ -1,22 +1,24 @@
 import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
 
 // Load saved key/model from localStorage
-document.getElementById('api-key').value = localStorage.getItem('gemini_key') || 'AIzaSyBcgd0pGo84nr4UEPL7eFMr_2xunnp1pkQ';
+document.getElementById('api-key').value = localStorage.getItem('gemini_key') || '';
 // File Reader Logic
 document.getElementById('file-selector').addEventListener('change', function(e) {
-    const file = e.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = function(e) {
-        document.getElementById('journal-input').value = e.target.result;
-    };
-    reader.readAsText(file);
+    for (let index = 0; index < e.target.files.length; index++) {
+        const file = e.target.files[index];
+        if (!file) continue;
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('journal-input').value += e.target.result;
+        };
+        reader.readAsText(file);
+    }
 });
 let fullText = "";
     
 window.runForecast = async () => {
     fullText = "";
-    const key = document.getElementById('api-key').value;
+    const key = document.getElementById('api-key').value || 'AIzaSyBcgd0pGo84nr4UEPL7eFMr_2xunnp1pkQ';
     const modelName = document.getElementById('model-name').value;
     const content = document.getElementById('journal-input').value;
     const btn = document.getElementById('btn-run');
