@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life-Timeline Forecaster</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .markdown-content h1 { @apply text-2xl font-bold mt-4 mb-2; }
+        .markdown-content h2 { @apply text-xl font-semibold mt-6 mb-2 text-blue-600; }
+        .markdown-content p { @apply mb-4 leading-relaxed; }
+        .markdown-content ul { @apply list-disc ml-5 mb-4; }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen p-4 md:p-8">
+    <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden border border-slate-200">
+        <div class="p-6 bg-slate-900 text-white flex justify-between items-center">
+            <h1 class="text-xl font-bold">Life Forecaster MVP</h1>
+            <button onclick="clearData()" class="text-xs bg-red-600 hover:bg-red-700 px-3 py-1 rounded">Clear All Data</button>
+        </div>
+
+        <div class="p-6 space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Gemini API Key</label>
+                    <input type="password" id="api-key" placeholder="Paste key here..." class="mt-1 block w-full border border-gray-300 rounded-md p-2 text-sm shadow-sm">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Model Name</label>
+                    <input type="text" id="model-name" value="gemini-1.5-pro" class="mt-1 block w-full border border-gray-300 rounded-md p-2 text-sm shadow-sm">
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Journal Entries (Paste Text or Markdown)</label>
+                <textarea id="journal-input" rows="10" placeholder="Paste your last 6 months of entries here..." class="mt-1 block w-full border border-gray-300 rounded-md p-2 text-sm font-mono shadow-sm"></textarea>
+            </div>
+
+            <button onclick="runForecast()" id="btn-run" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-md transition duration-200">
+                Generate Future Timelines
+            </button>
+
+            <hr class="my-8">
+
+            <div id="output" class="markdown-content prose prose-slate max-w-none">
+                <p class="text-gray-400 italic">Results will appear here...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script type="module" src="scripts.js"></script>
+</body>
+</html>
