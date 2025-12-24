@@ -16,7 +16,7 @@
         <div class="controls grid-row">
             <div>
                 <label>Gemini API Key</label>
-                <input type="password" id="api-key" placeholder="API key already provided, but if it's rate-limited, paste your key here...">
+                <input type="password" id="api-key" placeholder="Paste your key here...">
             </div>
             <div>
                 <label>Model Name</label>
@@ -30,7 +30,7 @@
 
         <div class="toggle-group toggle-row">
             <input type="checkbox" id="poster-toggle" style="width: auto;">
-            <label for="poster-toggle">Ask model to also output two detailed image generation prompts (one for each timeline)</label>
+            <label for="poster-toggle">Ask model to additionally output two detailed image generation prompts (one for each timeline)</label>
         </div>
 
         <label class="file-btn file-zone">
@@ -39,7 +39,7 @@
         </label>
 
         <div>
-            <label style="font-size: 0.8rem; color: var(--text-dim);">Journal Entries (your API key and data stay in the browser and are never sent to a server as all logic is Client-Side only)</label>
+            <label style="font-size: 0.8rem; color: var(--text-dim);">Journal Entries</label>
             <textarea id="journal-input" rows="10" placeholder="Paste your journal entries here..."></textarea>
         </div>
 
@@ -52,8 +52,8 @@
         <div id="output" class="markdown-content">
             <p style="text-align: center; color: #666; margin-top: 40px;">// Results will appear here...</p>
         </div>
+        <footer>Your API key and data stay in the browser and are never sent to a server as all logic is Client-Side only, find the open-source code [here](https://github.com/kiankyars/2025)</footer>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script type="module" src="scripts.js"></script>
 </body>
