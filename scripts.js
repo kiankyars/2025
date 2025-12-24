@@ -18,7 +18,7 @@ let fullText = "";
     
 window.runForecast = async () => {
     fullText = "";
-    const key = document.getElementById('api-key').value
+    const key = document.getElementById('api-key').value;
     const modelName = document.getElementById('model-name').value;
     const content = document.getElementById('journal-input').value;
     const btn = document.getElementById('btn-run');
@@ -45,7 +45,7 @@ window.runForecast = async () => {
         const genAI = new GoogleGenerativeAI(key);
         const model = genAI.getGenerativeModel({ model: modelName });
         const systemPrompt =
-        ```You are a Behavioral Analyst and Narrative Forecaster. I will provide a series of journal entries.
+        `You are a Behavioral Analyst and Narrative Forecaster. I will provide a series of journal entries.
         Your Task:
         1. Analyze the text for: 'Engines' (habits/thoughts that drive progress) and 'Anchors' (recurring self-sabotage or anxieties).
         2. Project a Gold Timeline: A 12-month 'Best Case' movie where the user leverages their Engines.
@@ -54,7 +54,7 @@ window.runForecast = async () => {
         1. Provide exactly 6 Plot Points for each timeline.
         2. Each point must include: a Title, a Month (e.g., Month 3), a brief narrative description, and a Happiness Score (1−10).
         3. Output in clean Markdown format.${posterInstruction}
-        Journal data: \n\n ${content}```;
+        Journal data: \n\n ${content}`;
         console.log(systemPrompt)
     
         const result = await model.generateContentStream(systemPrompt);
@@ -87,7 +87,7 @@ window.clearData = () => {
 
 window.downloadReport = () => {
     if (!fullText) {
-        alert("Norhing to export.");
+        alert("Nothing to export.");
         return;
     }
     const blob = new Blob([fullText], { type: 'text/markdown' });
