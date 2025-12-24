@@ -48,11 +48,14 @@
         <button onclick="downloadReport()" id="btn-download" style="background: transparent; border: 1px solid var(--border); color: var(--text-main); margin-top: 10px;">
             💾 Download Timeline (.md)
         </button>
+        <button id="copy-btn" onclick="copyReport()" style="display: none; background: transparent; border: 1px solid var(--accent); color: var(--accent); margin-top: 10px; width: 100%;">
+            📋 Copy Timeline
+        </button>
 
         <div id="output" class="markdown-content">
             <p style="text-align: center; color: #666; margin-top: 40px;">// Results will appear here...</p>
         </div>
-        <footer>Your API key and data stay in the browser and are never sent to a server as all llm calls are client-side only, find the open-source code <a href="https://kiankyars.github.io/2025/">here</a>.</footer>
+        <footer>Your API key and data stay in the browser and are never sent to a server as all llm calls are client-side only, find the open-source code <a href="https://github.com/kiankyars/2025">here</a>.</footer>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script type="module" src="scripts.js"></script>

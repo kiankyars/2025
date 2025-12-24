@@ -60,7 +60,7 @@ window.runForecast = async () => {
         const result = await model.generateContentStream(systemPrompt);
         
         outputDiv.innerHTML = ""; // Clear "Thinking"
-
+        document.getElementById('copy-btn').style.display = "block";
         for await (const chunk of result.stream) {
             const chunkText = chunk.text();
             fullText += chunkText;
@@ -95,4 +95,8 @@ window.downloadReport = () => {
     a.href = URL.createObjectURL(blob);
     a.download = 'timeline.md';
     a.click();
+};
+
+window.copyReport = () => {
+    navigator.clipboard.writeText(fullText)
 };

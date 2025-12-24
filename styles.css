@@ -112,6 +112,15 @@ button {
     color: var(--text-main);
 }
 
+footer {
+    margin-top: 2rem;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    text-align: center;
+    padding: 1rem 0 0 0;
+    border-top: 1px solid var(--border);
+}
+
 #download-btn:hover { border-color: var(--text-main); }
 
 .markdown-content { margin-top: 3rem; border-top: 1px solid var(--border); padding-top: 2rem; }
