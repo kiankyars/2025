@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
 
 // Load saved key/model from localStorage
-document.getElementById('api-key').value = localStorage.getItem('gemini_key') || '';
+document.getElementById('api-key').value = localStorage.getItem('gemini_key') || 'AIzaSyBcgd0pGo84nr4UEPL7eFMr_2xunnp1pkQ';
 document.getElementById('model-name').value = localStorage.getItem('gemini_model') || 'gemini-3-flash-preview';
 // File Reader Logic
 document.getElementById('file-selector').addEventListener('change', function(e) {
@@ -13,10 +13,8 @@ document.getElementById('file-selector').addEventListener('change', function(e) 
     };
     reader.readAsText(file);
 });
-
-window.runForecast = async () => {
     
-    window.runForecast = async () => {
+window.runForecast = async () => {
         const key = document.getElementById('api-key').value;
         const modelName = document.getElementById('model-name').value;
         const content = document.getElementById('journal-input').value;

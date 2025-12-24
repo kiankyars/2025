@@ -1,72 +1,94 @@
-<style>
-    :root {
-        --bg: #0d0221;
-        --card: #190e38;
-        --neon-pink: #ff007f;
-        --neon-blue: #00f3ff;
-        --neon-purple: #bc13fe;
-        --text: #ffffff;
-    }
-    body {
-        background-color: var(--bg);
-        color: var(--text);
-        font-family: 'Segoe UI', Roboto, sans-serif;
-        display: flex;
-        justify-content: center;
-        padding: 20px;
-    }
-    .container {
-        max-width: 800px;
-        width: 100%;
-        background: var(--card);
-        border: 2px solid var(--neon-blue);
-        box-shadow: 0 0 15px var(--neon-blue), inset 0 0 5px var(--neon-blue);
-        border-radius: 15px;
-        padding: 2rem;
-    }
-    h1 {
-        text-transform: uppercase;
-        letter-spacing: 3px;
-        color: var(--neon-pink);
-        text-shadow: 2px 2px var(--neon-purple);
-        text-align: center;
-    }
-    input, textarea, select {
-        background: #000;
-        border: 1px solid var(--neon-purple);
-        color: var(--neon-blue);
-        padding: 10px;
-        width: 100%;
-        margin-top: 5px;
-        border-radius: 5px;
-    }
-    button {
-        background: var(--neon-pink);
-        color: white;
-        border: none;
-        padding: 15px;
-        font-weight: bold;
-        text-transform: uppercase;
-        cursor: pointer;
-        width: 100%;
-        margin-top: 20px;
-        box-shadow: 0 0 10px var(--neon-pink);
-    }
-    button:hover { opacity: 0.9; transform: scale(1.01); }
-    .toggle-container {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin: 15px 0;
-        font-size: 0.9rem;
-    }
-    .markdown-content h2 { color: var(--neon-blue); border-bottom: 1px solid var(--neon-purple); }
-    .file-input-label {
-        display: inline-block;
-        padding: 8px;
-        border: 1px dashed var(--neon-blue);
-        cursor: pointer;
-        margin-bottom: 10px;
-        font-size: 0.8rem;
-    }
-</style>
+:root {
+    --bg: #0d0221;
+    --card: #190e38;
+    --neon-pink: #ff007f;
+    --neon-blue: #00f3ff;
+    --neon-purple: #bc13fe;
+    --text: #ffffff;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--card);
+    border: 2px solid var(--neon-blue);
+    box-shadow: 0 0 20px var(--neon-blue);
+    border-radius: 15px;
+    padding: 2rem;
+}
+
+h1 {
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    color: var(--neon-pink);
+    text-shadow: 3px 3px var(--neon-purple);
+    text-align: center;
+}
+
+input, textarea, select {
+    background: #000;
+    border: 1px solid var(--neon-purple);
+    color: var(--neon-blue);
+    padding: 12px;
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.toggle-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+    color: var(--neon-blue);
+}
+
+.file-btn {
+    display: block;
+    padding: 10px;
+    border: 1px dashed var(--neon-pink);
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 10px;
+    color: var(--neon-pink);
+}
+
+button {
+    background: var(--neon-pink);
+    color: white;
+    border: none;
+    padding: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    box-shadow: 0 0 10px var(--neon-pink);
+}
+
+#download-btn {
+    background: transparent;
+    border: 1px solid var(--neon-blue);
+    color: var(--neon-blue);
+    box-shadow: 0 0 5px var(--neon-blue);
+    display: none; /* Hidden until content exists */
+}
+
+.markdown-content h2 { color: var(--neon-pink); text-shadow: 1px 1px #000; border-bottom: 1px solid var(--neon-blue); padding-bottom: 5px; }
+.markdown-content p { line-height: 1.6; }
