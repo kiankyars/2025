@@ -2,7 +2,11 @@ import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
 
 // Load saved key/model from localStorage
 document.getElementById('api-key').value = localStorage.getItem('gemini_key') || '';
-document.getElementById('model-name').value = localStorage.getItem('gemini_model');
+const modelSelect = document.getElementById('model-name');
+const savedModel = localStorage.getItem('gemini_model');
+if ([...modelSelect.options].some(option => option.value === savedModel)) {
+    modelSelect.value = savedModel;
+}
 // File Reader Logic
 document.getElementById('file-selector').addEventListener('change', function(e) {
     for (let index = 0; index < e.target.files.length; index++) {
